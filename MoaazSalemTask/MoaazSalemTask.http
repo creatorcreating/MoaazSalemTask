@@ -1,0 +1,6 @@
+@MoaazSalemTask_HostAddress = http://localhost:5183
+
+GET {{MoaazSalemTask_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

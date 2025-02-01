@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="xunit" Version="2.5.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MoaazSalemTask\MoaazSalemTask.API.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <Target Name="CopyDepsJson" AfterTargets="Build">
+    <PropertyGroup>
+      <SourcePath>$(MSBuildProjectDirectory)\..\MoaazSalemTask.API\bin\$(Configuration)\net8.0\testhost.deps.json</SourcePath>
+    </PropertyGroup>
+
+    <MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
+
+    <Copy SourceFiles="$(SourcePath)"
+          DestinationFolder="$(OutputPath)"
+          Condition="Exists('$(SourcePath)')"
+          ContinueOnError="true" />
+  </Target>
+
+</Project>

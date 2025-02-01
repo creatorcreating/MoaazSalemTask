@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Person Details</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Person Details</h1>
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <label for="telephoneNumber">Telephone Number:</label>
+        <input type="text" id="telephoneNumber" name="telephoneNumber">
+        <button onclick="fetchPersonDetails()">Filter</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Telephone Code</th>
+                <th>Telephone Number</th>
+                <th>Address</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody id="personDetailsTableBody">
+            <!-- Data will be populated here -->
+        </tbody>
+    </table>
+
+    <script>
+        async function fetchPersonDetails() {
+            const name = document.getElementById('name').value;
+            const telephoneNumber = document.getElementById('telephoneNumber').value;
+
+            try {
+                const response = await fetch(`/PersonDetails?Name=${name}&TelephoneNumber=${telephoneNumber}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+
+                const tableBody = document.getElementById('personDetailsTableBody');
+                tableBody.innerHTML = '';
+
+                data.forEach(person => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                            <td>${person['first name']}</td>
+                            <td>${person['last name']}</td>
+                            <td>${person['telephone code']}</td>
+                            <td>${person['telephone number']}</td>
+                            <td>${person['address']}</td>
+                            <td>${person['country']}</td>
+                        `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error fetching person details:', error);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', fetchPersonDetails);
+    </script>
+</body>
+
+</html>

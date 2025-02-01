@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="CSV\Technical Task Data As CSV.csv" />
+    <None Remove="SQL\Technical Task Data As SQL Server.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="CSV\Technical Task Data As CSV.csv" />
+    <EmbeddedResource Include="SQL\Technical Task Data As SQL Server.sql" />
+  </ItemGroup>
+
+</Project>
