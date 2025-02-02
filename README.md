@@ -40,7 +40,19 @@ This is a .NET 8 application that provides an API for managing person details. I
    Press `F5` or use the `dotnet run` command in the terminal:
    dotnet run --project MoaazSalemTask
 
-   
+5. **Run the Swagger API**:
+http://localhost/swagger/index.html
+GET
+/PersonDetails
+click on "Try it out" then "Execute"
+
+
+6. **Run the HTML Page**:
+
+open http://localhost/html/persondetails.html
+
+
+
 ## How to Run the Tests
 
 1. **Navigate to the Test Project Directory**:
@@ -64,7 +76,7 @@ This is a .NET 8 application that provides an API for managing person details. I
 - **Response**: Returns the details of the person if found.
 
 ### Example Call
-curl -X GET "https://localhost:5001/PersonDetails?Name=rana&TelephoneNumber=4444"
+curl -X GET "https://localhost/PersonDetails?Name=rana&TelephoneNumber=4444"
 
 
 
